@@ -17,6 +17,14 @@ This project uses **`uv`** as the Python package manager instead of `pip`. This 
 
 `uv` can be installed at https://docs.astral.sh/uv/getting-started/.
 
+### Access tokens
+Please visit https://huggingface.co/settings/tokens to create an access token.
+Paste it into a `.env` file in the projects base directory (where `pipeline.py` is located.) as:
+```
+HF_TOKEN=....
+```
+To run some models, you may need to accept their terms and conditions, but you will be prompted in the terminal if that is the case.
+
 ### Running the Pipeline
 
 To execute the diarization pipeline:
