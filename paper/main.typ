@@ -4,7 +4,7 @@
 #show: ieee.with(
   title: [Development and evaluation of a modular speaker diarization pipeline],
   abstract: [
-    This paper presents the development and evaluation of a modular speaker diarization pipeline. By evaluating different voice activity detection parameters, embedding inference models (Pyannote, SpeechBrain and WavLM), and clustering algorithms (Agglomerative, DBSCAN, GMM), the impact of various architectural choices on the Diarization Error Rate (DER) is analyzed. Through the implementation of a sliding window approach, segment merging, and targeted hyperparameter tuning, the pipeline's DER was improved to 0.196. The results highlight the effectiveness of TDNN-based embeddings combined with Cosine-based Agglomerative Clustering while also demonstrating the limitations of density-based clustering and transformer architectures on short audio segments.
+    This paper presents the development and evaluation of a modular speaker diarization pipeline. By evaluating different voice activity detection parameters, embedding inference models (Pyannote, SpeechBrain and WavLM), and clustering algorithms (Agglomerative, DBSCAN, GMM), the impact of various architectural choices on the Diarization Error Rate (DER) is analyzed. Through the implementation of a sliding window approach, segment merging, and targeted hyperparameter tuning, the pipeline's DER was improved to 0.196. 
   ],
   authors: (
     (
