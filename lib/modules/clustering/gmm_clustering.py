@@ -1,0 +1,53 @@
+import numpy as np
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import normalize
+from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
+from sklearn.mixture import GaussianMixture, BayesianGaussianMixture
+
+from lib.models.module import DiarizationModule
+
+class GaussianMixtureModelClustering(DiarizationModule):
+    def __init__(self, embeddings: list, n_clusters: int = 4):
+        super().__init__(tag="C-Space Improved Clustering")
+        self.embeddings = embeddings
+        self.n_clusters = n_clusters
+        
+       
+    def run(self):
+        X = np.asarray(self.embeddings, dtype=np.float32)
+        print(f"[DEBUG] Embeddings shape: {X.shape}")
+
+        # Normalize
+        X_normalized = normalize(X)
+
+        # PCA: Reduziere die Dimensionen massiv (z.B. auf 5), damit das GMM sinnvoll fitten kann
+        pca = PCA(n_components=min(5, X_normalized.shape[0], X_normalized.shape[1]), random_state=42)
+        X_reduced = pca.fit_transform(X_normalized)
+        # Und noch mal normieren, da die Vektoren durch PCA die Sphärengrenze verlassen
+        X_reduced = normalize(X_reduced)
+
+        bgmm = BayesianGaussianMixture(n_components=self.n_clusters, covariance_type='diag', weight_concentration_prior_type='dirichlet_process', random_state=42)
+        bgmm.fit(X_reduced)
+        labels = bgmm.predict(X_reduced)
+
+        # Print cluster distribution
+        unique, counts = np.unique(labels, return_counts=True)
+        print(f"[DEBUG] Cluster distribution:")
+        for cluster_id, n in zip(unique, counts):
+            print(f"  Cluster {cluster_id}: {n} embeddings ({100*n/len(labels):.1f}%)")
+
+        # Visualization
+        X_pca = PCA(n_components=2, random_state=42).fit_transform(X_normalized)
+        
+        fig, ax = plt.subplots(figsize=(10, 6))
+        scatter = ax.scatter(X_pca[:, 0], X_pca[:, 1], c=labels, cmap='tab10', s=50, alpha=0.6)
+        ax.set_xlabel('PC1')
+        ax.set_ylabel('PC2')
+        plt.colorbar(scatter, ax=ax, label='Cluster ID')
+        plt.savefig('/tmp/clustering.png', dpi=100)
+        print(f"[DEBUG] Saved clustering plot to /tmp/clustering.png")
+        plt.close()
+
+        return labels, X_pca

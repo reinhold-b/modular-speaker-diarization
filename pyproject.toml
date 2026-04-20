@@ -1,0 +1,41 @@
+[project]
+name = "speaker-diarization"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "aiortc>=1.14.0",
+    "huggingface-hub<1.0",
+    "matplotlib>=3.10.8",
+    "nemo-toolkit[asr]>=2.7.2",
+    "numpy>=2.4.4",
+    "omegaconf>=2.3.0",
+    "onnxruntime>=1.24.4",
+    "pandas>=3.0.1",
+    "pip>=26.0.1",
+    "pyannote-audio==4.0.4",
+    "python-dotenv>=1.2.2",
+    "requests>=2.33.0",
+    "scikit-learn>=1.8.0",
+    "silero-vad>=6.2.1",
+    "simpleder>=0.0.5",
+    "sounddevice>=0.5.5",
+    "speechbrain>=1.0.3",
+    "torch>=2.11.0",
+    "torchaudio>=2.11.0",
+    "tqdm>=4.67.3",
+    "wespeaker",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lib*"]
+exclude = ["datasets*", "paper*", "pretrained_models*"]
+
+[tool.uv.sources]
+wespeaker = { git = "https://github.com/wenet-e2e/wespeaker.git", rev = "master" }

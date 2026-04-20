@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: speaker-diarization
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: <3.13,>=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: aiortc>=1.14.0
+Requires-Dist: huggingface-hub<1.0
+Requires-Dist: matplotlib>=3.10.8
+Requires-Dist: nemo-toolkit[asr]>=2.7.2
+Requires-Dist: numpy>=2.4.4
+Requires-Dist: omegaconf>=2.3.0
+Requires-Dist: onnxruntime>=1.24.4
+Requires-Dist: pandas>=3.0.1
+Requires-Dist: pip>=26.0.1
+Requires-Dist: pyannote-audio==4.0.4
+Requires-Dist: python-dotenv>=1.2.2
+Requires-Dist: requests>=2.33.0
+Requires-Dist: scikit-learn>=1.8.0
+Requires-Dist: silero-vad>=6.2.1
+Requires-Dist: simpleder>=0.0.5
+Requires-Dist: sounddevice>=0.5.5
+Requires-Dist: speechbrain>=1.0.3
+Requires-Dist: torch>=2.11.0
+Requires-Dist: torchaudio>=2.11.0
+Requires-Dist: tqdm>=4.67.3
+Requires-Dist: wespeaker
+
+# Development of a speaker diarization system
+
+AIM: der of around 0.2
+
+tried pyannote and speechbrain with dbscan and cspace
+
+-> der were around 0.42 for both
+
+improving idea is to add overlapping detection to the pipeline
+
+MADE VAD SEGMENTS LONGER
+
+2026-04-19 11:55:10,723 - lib.log - INFO - Dataset diarization system finished.
+2026-04-19 11:55:10,726 - lib.log - INFO - DER for DBSCAN Clustering: 0.5371279847971554
+2026-04-19 11:55:10,726 - lib.log - INFO - DER for C-Space Clustering: 0.4554557214738924
+2026-04-19 11:55:10,726 - lib.log - INFO - DER for C-Space Clustering with Merging: 0.4269257029810381
+
+MIN 800 ms, MAX 3 s
+
+2026-04-19 11:57:10,776 - lib.log - INFO - Dataset diarization system finished.
+2026-04-19 11:57:10,781 - lib.log - INFO - DER for DBSCAN Clustering: 0.47814591423613595
+2026-04-19 11:57:10,781 - lib.log - INFO - DER for C-Space Clustering: 0.5134215953491118
+2026-04-19 11:57:10,781 - lib.log - INFO - DER for C-Space Clustering with Merging: 0.3997982285734354
+
+Mit sliding window
+
+- INFO - DER for DBSCAN Clustering: 0.5773130892950079
+2026-04-19 12:24:49,186 - lib.log - INFO - DER for C-Space Clustering: 0.5134215953491118
+2026-04-19 12:24:49,186 - lib.log - INFO - DER for C-Space Clustering with Merging: 0.3997982285734354
+2026-04-19 12:24:49,186 - lib.log - INFO - DER for Sliding Window Pipeline: 0.4273826022213373
+
+Merging and Sliding
+
+2026-04-19 12:31:56,652 - lib.log - INFO - DER for Merging + Sliding Window Pipeline: 0.37882465227064605
+
+Removing VAD 3 sek boundary
+
+2026-04-19 12:35:24,158 - lib.log - INFO - DER for Sliding Window Pipeline: 0.3598551319867061
+2026-04-19 12:35:24,158 - lib.log - INFO - DER for Merging + Sliding Window Pipeline: 0.23570709086755978
+
+Min VAD length 250 ms and padding to 80 ms
+
+2026-04-19 12:43:12,071 - lib.log - INFO - DER for Sliding Window Pipeline: 0.48773256082106475
+2026-04-19 12:43:12,071 - lib.log - INFO - DER for Merging + Sliding Window Pipeline: 0.21868568956163814
+
+reducing step to 0.5s:
+around 0.196
+
+GMM with merge sliding pipe:
+2026-04-19 13:08:04,416 - lib.log - INFO - DER for GMM Clustering Pipeline: 0.29685533624269883
