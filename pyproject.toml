@@ -25,7 +25,6 @@ dependencies = [
     "torch>=2.11.0",
     "torchaudio>=2.11.0",
     "tqdm>=4.67.3",
-    "wespeaker",
 ]
 
 [build-system]
@@ -36,6 +35,3 @@ build-backend = "setuptools.build_meta"
 where = ["."]
 include = ["lib*"]
 exclude = ["datasets*", "paper*", "pretrained_models*"]
-
-[tool.uv.sources]
-wespeaker = { git = "https://github.com/wenet-e2e/wespeaker.git", rev = "master" }

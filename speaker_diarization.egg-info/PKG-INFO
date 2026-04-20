@@ -24,55 +24,91 @@ Requires-Dist: speechbrain>=1.0.3
 Requires-Dist: torch>=2.11.0
 Requires-Dist: torchaudio>=2.11.0
 Requires-Dist: tqdm>=4.67.3
-Requires-Dist: wespeaker
 
-# Development of a speaker diarization system
+# Implementation of a Speaker Diarization System
 
-AIM: der of around 0.2
+## Overview
 
-tried pyannote and speechbrain with dbscan and cspace
+This project implements a modular speaker diarization pipeline to determine who is speaking at any given moment in time. The pipeline has been iteratively optimized and achieves a DER (Diarization Error Rate) of approximately 0.196 on the AMI Corpus.
 
--> der were around 0.42 for both
+## Installation and Execution
 
-improving idea is to add overlapping detection to the pipeline
+### Requirement: `uv` Package Manager
 
-MADE VAD SEGMENTS LONGER
+This project uses **`uv`** as the Python package manager instead of `pip`. This was chosen because `uv` offers the following advantages:
 
-2026-04-19 11:55:10,723 - lib.log - INFO - Dataset diarization system finished.
-2026-04-19 11:55:10,726 - lib.log - INFO - DER for DBSCAN Clustering: 0.5371279847971554
-2026-04-19 11:55:10,726 - lib.log - INFO - DER for C-Space Clustering: 0.4554557214738924
-2026-04-19 11:55:10,726 - lib.log - INFO - DER for C-Space Clustering with Merging: 0.4269257029810381
+- **Faster Installation**: Parallel downloading and installation of packages
+- **Better Dependency Management**: Exact Python version control (Python 3.12)
+- **Consistency**: Via `uv.lock`, the exact environment can be reproduced across machines
+- **Simple Syntax**: Similar to `pip`, but with modern optimizations
 
-MIN 800 ms, MAX 3 s
+`uv` can be installed at https://docs.astral.sh/uv/getting-started/.
 
-2026-04-19 11:57:10,776 - lib.log - INFO - Dataset diarization system finished.
-2026-04-19 11:57:10,781 - lib.log - INFO - DER for DBSCAN Clustering: 0.47814591423613595
-2026-04-19 11:57:10,781 - lib.log - INFO - DER for C-Space Clustering: 0.5134215953491118
-2026-04-19 11:57:10,781 - lib.log - INFO - DER for C-Space Clustering with Merging: 0.3997982285734354
+### Running the Pipeline
 
-Mit sliding window
+To execute the diarization pipeline:
 
-- INFO - DER for DBSCAN Clustering: 0.5773130892950079
-2026-04-19 12:24:49,186 - lib.log - INFO - DER for C-Space Clustering: 0.5134215953491118
-2026-04-19 12:24:49,186 - lib.log - INFO - DER for C-Space Clustering with Merging: 0.3997982285734354
-2026-04-19 12:24:49,186 - lib.log - INFO - DER for Sliding Window Pipeline: 0.4273826022213373
+```bash
+uv run pipeline.py --audio_path <path_to_audio> [--visualize]
+```
 
-Merging and Sliding
+The pipeline performs the following steps:
+1. Voice Activity Detection (VAD) using Silero VAD
+2. Audio segmentation and windowing
+3. Speaker embedding extraction (Pyannote TDNN)
+4. Clustering of embeddings (Agglomerative Clustering with Cosine Similarity)
+5. Post-processing and label output
 
-2026-04-19 12:31:56,652 - lib.log - INFO - DER for Merging + Sliding Window Pipeline: 0.37882465227064605
+## Dataset: AMI Corpus
 
-Removing VAD 3 sek boundary
+### Download and Structure
 
-2026-04-19 12:35:24,158 - lib.log - INFO - DER for Sliding Window Pipeline: 0.3598551319867061
-2026-04-19 12:35:24,158 - lib.log - INFO - DER for Merging + Sliding Window Pipeline: 0.23570709086755978
+The **AMI Corpus** is a publicly available dataset containing over 100 hours of meeting recordings. The files are structured as follows:
 
-Min VAD length 250 ms and padding to 80 ms
+```
+datasets/
+└── amicorpus/
+    ├── ami_public_manual_1.6.2/
+    │   └── segments/               # XML reference data for DER calculation
+    ├── ES2015a.Mix-Headset.wav     # Test audio (mix of all speakers)
+    └── ES2016a.Mix-Headset.wav     # Test audio (mix of all speakers)
+```
 
-2026-04-19 12:43:12,071 - lib.log - INFO - DER for Sliding Window Pipeline: 0.48773256082106475
-2026-04-19 12:43:12,071 - lib.log - INFO - DER for Merging + Sliding Window Pipeline: 0.21868568956163814
+### Download
 
-reducing step to 0.5s:
-around 0.196
+The dataset can be downloaded from https://groups.inf.ed.ac.uk/ami/corpus. The audio files should be placed in the `datasets/amicorpus/` directory. The XML reference data is located in the `ami_public_manual_1.6.2/segments/` folder and is used for DER calculation.
 
-GMM with merge sliding pipe:
-2026-04-19 13:08:04,416 - lib.log - INFO - DER for GMM Clustering Pipeline: 0.29685533624269883
+### Audio Files
+
+Two meeting audio files are used for evaluation:
+- **ES2015a.Mix-Headset.wav**: Mix recording of meeting ES2015a
+- **ES2016a.Mix-Headset.wav**: Mix recording of meeting ES2016a
+
+These are 16 kHz mono audio files representing the mix of all speakers from each meeting.
+
+## Absolute Paths
+
+**⚠️ Warning: The project contains hardcoded absolute paths**
+
+The following files contain absolute paths that need to be adjusted to your local machine:
+
+- **`lib/utils/xml_to_ref.py`**: 
+  ```python
+  file_path = base_dir.joinpath("datasets/amicorpus/ami_public_manual_1.6.2/segments")
+  ```
+These paths must be adjusted when running the project on a different machine. A future improvement would be to use environment variables or relative paths.
+
+## Live System Prototype: `main.py`
+
+The **`main.py`** file implements a live diarization system prototype with real-time audio capture and processing. However, this file currently has **only symbolic value** and is **not fully implemented**.
+
+### Status
+
+- The basic structure for real-time audio capture (via `sounddevice`) exists
+- VAD and embedding extraction are present
+- The file was intended for interactive testing and experimentation with live audio
+- Further development is required for productive use
+
+For actual evaluation and research, **`pipeline.py`** should be used, as this file is fully tested and optimized.
+
+In the **`pipeline.py`** file you will find multiple pipelines that have been used for testing and represent the developemnt of the system. Remove the comments in the `main` method to test multiple pipelines per run.
