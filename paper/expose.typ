@@ -1,1 +1,0 @@
-= Development of a Speaker Diarization System

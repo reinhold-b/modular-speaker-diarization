@@ -1,118 +1,128 @@
-% Encoding: UTF-8
-@Article{Aut10,
-  author  = {A. Author},
-  journal = {Journal of Typst},
-  title   = {How to make a template in Typst},
-  year    = {2024},
-  pages   = {1-10},
-  volume  = {25 (1)},
+@misc{ami_corpus,
+  title        = {The AMI Meeting Corpus},
+  author       = {Carletta, Jean and Ashby, Simone and Bourban, Sebastien and Flynn, Mike and Guillemot, Mael and Hain, Thomas and Kadlec, Jaroslav and Karaiskos, Vasilis and Kraaij, Wessel and Kronenthal, Melissa and Lathoud, Guillaume and Lincoln, Mike and Lisowska, Agnes and McCowan, Iain and Post, Wilfried and Reidsma, Dennis and Wellner, Pierre},
+  year         = {2005},
+  url          = {https://groups.inf.ed.ac.uk/ami/corpus},
+  howpublished = {\url{https://groups.inf.ed.ac.uk/ami/corpus/}},
+  note         = {Accessed: 2026-04-19}
 }
 
-@INPROCEEDINGS{areview,
-  author={Al-Hadithy, Thaer M. and Frikha, Mondher and Maseer, Zaidoon Kamil},
-  booktitle={2022 International Symposium on Multidisciplinary Studies and Innovative Technologies (ISMSIT)}, 
-  title={Speaker Diarization based on Deep Learning Techniques: A Review}, 
-  year={2022},
-  volume={},
-  number={},
-  pages={856-871},
-  keywords={Deep learning;Neural networks;Speech recognition;Audio recording;Acoustics;Artificial intelligence;Indexing;Deep Learning;Review;Speaker Diarization},
-  doi={10.1109/ISMSIT56059.2022.9932710}}
+@ARTICLE{dia1,
+  author={Anguera, Xavier and Bozonnet, Simon and Evans, Nicholas and Fredouille, Corinne and Friedland, Gerald and Vinyals, Oriol},
+  journal={IEEE Transactions on Audio, Speech, and Language Processing}, 
+  title={Speaker Diarization: A Review of Recent Research}, 
+  year={2012},
+  volume={20},
+  number={2},
+  pages={356-370},
+  keywords={Speech;Microphones;NIST;Data models;Adaptation models;Acoustics;Speech recognition;Meetings;rich transcription;speaker diarization},
+  doi={10.1109/TASL.2011.2125954}}
 
-@misc{webrtc,
-  title        = {WebRTC: Voice Activity Detector (VAD)},
-  author       = {{WebRTC Authors}},
+@misc{pyannote_metrics_diarization,
+  title        = {pyannote.metrics: Diarization error rate (DER) reference documentation},
+  author       = {Bredin, Herv{\'e}},
   year         = {2024},
-  howpublished = {Online documentation and source code},
-  url          = {https://webrtc.googlesource.com/src/},
-  note         = {Accessed: 2026-03-24}
+  url          = {https://pyannote.github.io/pyannote-metrics/reference.html#diarization},
+  note         = {Accessed: 2026-04-19}
+}
+
+@misc{dercalc,
+      title={From Modular to End-to-End Speaker Diarization}, 
+      author={Federico Landini},
+      year={2024},
+      eprint={2407.08752},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2407.08752}, 
 }
 
 @misc{silero,
-  title        = {Silero VAD},
-  author       = {{Silero Team}},
-  year         = {2024},
-  howpublished = {GitHub repository},
-  url          = {https://github.com/snakers4/silero-vad},
-  note         = {Accessed: 2026-03-24}
+      title={Silero VAD GitHub repository}, 
+      url={https://github.com/snakers4/silero-vad}, 
 }
 
-@inproceedings{pyannote2020,
-  title     = {pyannote.audio: neural building blocks for speaker diarization},
-  author    = {Bredin, Herv{\'e} and Yin, Ruiqing and Coria, Juan Manuel and Gelly, Gregory and Korshunov, Pavel and Lavechin, Marvin and Fustes, Diego A. and Titeux, Hadrien and Bouaziz, Wassil and Gill, Marie-Philippe},
-  booktitle = {IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  year      = {2020},
-  pages     = {7124--7128},
-  doi       = {10.1109/ICASSP40776.2020.9052974}
+@misc{dnn,
+      title={Deep Neural Networks}, 
+      url={https://www.iese.fraunhofer.de/de/trend/kuenstliche-intelligenz/deep-learning.html}, 
 }
 
-@inproceedings{fujita2019eend,
-  title     = {End-to-End Neural Speaker Diarization with Self-Attention},
-  author    = {Fujita, Yusuke and Kawahara, Tsubasa and Koshinaka, Takafumi and Nagao, Kenta and Ogawa, Tsubasa and Hori, Chiori and Delcroix, Marc and Kanda, Naoyuki and Watanabe, Shinji},
-  booktitle = {IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)},
-  year      = {2019},
-  pages     = {296--303},
-  doi       = {10.1109/ASRU46091.2019.9003959}
+@INPROCEEDINGS{tdnn,
+  author={Snyder, David and Garcia-Romero, Daniel and Sell, Gregory and Povey, Daniel and Khudanpur, Sanjeev},
+  booktitle={2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={X-Vectors: Robust DNN Embeddings for Speaker Recognition}, 
+  year={2018},
+  volume={},
+  number={},
+  pages={5329-5333},
+  keywords={Acoustics;Training;Feature extraction;Speaker recognition;Training data;Neural networks;NIST;speaker recognition;deep neural networks;data augmentation;x-vectors},
+  doi={10.1109/ICASSP.2018.8461375}}
+
+@misc{emb-hf-pyannote,
+  title = {Pyannote Embedding Huggingface},
+  url = {https://huggingface.co/pyannote/embedding},
 }
 
-@inproceedings{snyder2018xvectors,
-  title     = {X-Vectors: Robust DNN Embeddings for Speaker Recognition},
-  author    = {Snyder, David and Garcia-Romero, Daniel and Sell, Gregory and Povey, Daniel and Khudanpur, Sanjeev},
-  booktitle = {IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  year      = {2018},
-  pages     = {5329--5333},
-  doi       = {10.1109/ICASSP.2018.8461375}
+@INPROCEEDINGS{clustering1,
+  author={Garcia-Romero, Daniel and Snyder, David and Sell, Gregory and Povey, Daniel and McCree, Alan},
+  booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={Speaker diarization using deep neural network embeddings}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={4930-4934},
+  keywords={Calibration;Speech;Neural networks;Acoustics;Speaker recognition;Training;Speaker diarization;deep neural networks;clustering;end-to-end learning},
+  doi={10.1109/ICASSP.2017.7953094}}
+
+@misc{DBSCAN,
+  title = {DBSCAN Scikit-learn},
+  url = {https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html},
 }
 
-@inproceedings{desplanques2020ecapa,
-  title     = {ECAPA-TDNN: Emphasized Channel Attention, Propagation and Aggregation in TDNN Based Speaker Verification},
-  author    = {Desplanques, Brecht and Thienpondt, Jenthe and Demuynck, Kris},
-  booktitle = {Interspeech},
-  year      = {2020},
-  pages     = {3830--3834},
-  doi       = {10.21437/Interspeech.2020-2650}
+@misc{ahc,
+  title = {Agglomerative Clustering},
+  url = {https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html},
 }
 
-@inproceedings{sell2018dihard,
-  title     = {The DIHARD Speaker Diarization Challenge},
-  author    = {Sell, Gregory and Snyder, David and Garcia-Romero, Daniel and McCree, Alan and Shon, Suwon and Hines, Ronald and Elibol, Oguz and Sonmez, Kivanc},
-  booktitle = {Interspeech},
-  year      = {2018},
-  pages     = {2798--2802},
-  doi       = {10.21437/Interspeech.2018-1679}
+@misc{gmm,
+  title = {Gaussian Mixture Models},
+url = {https://scikit-learn.org/stable/modules/mixture.html},
 }
 
-@inproceedings{ng2002spectral,
-  title     = {On Spectral Clustering: Analysis and an Algorithm},
-  author    = {Ng, Andrew Y. and Jordan, Michael I. and Weiss, Yair},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
-  year      = {2002},
-  pages     = {849--856}
+@misc{speechbrain-url,
+  title = {SpeechBrain embedding model},
+  url = {https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb},
 }
 
-@article{landini2022vbx,
-  title   = {Bayesian HMM clustering of x-vector sequences (VBx) in speaker diarization: Theory, implementation and analysis on standard tasks},
-  author  = {Landini, Federico and Diez, Mireia and Burget, Luk{\'a}{\v{s}} and Rohdin, Johanna and Silnova, Anna and Wang, Hossein and Cernock{\'y}, Jan},
-  journal = {Computer Speech \& Language},
-  year    = {2022},
-  volume  = {71},
-  pages   = {101254},
-  doi     = {10.1016/j.csl.2021.101254}
+@misc{speechbrain,
+      title={SpeechBrain: A General-Purpose Speech Toolkit}, 
+      author={Mirco Ravanelli and Titouan Parcollet and Peter Plantinga and Aku Rouhe and Samuele Cornell and Loren Lugosch and Cem Subakan and Nauman Dawalatabad and Abdelwahab Heba and Jianyuan Zhong and Ju-Chieh Chou and Sung-Lin Yeh and Szu-Wei Fu and Chien-Feng Liao and Elena Rastorgueva and François Grondin and William Aris and Hwidong Na and Yan Gao and Renato De Mori and Yoshua Bengio},
+      year={2021},
+      eprint={2106.04624},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2106.04624}, 
 }
 
-@article{speechbrain2021,
-  title   = {SpeechBrain: A General-Purpose Speech Toolkit},
-  author  = {Ravanelli, Mirco and Zhong, Jianyuan and Pascual, Santiago and Swietojanski, Pawel and Monteiro, Joao and Trmal, Jan and Bengio, Yoshua},
-  journal = {arXiv preprint arXiv:2106.04624},
-  year    = {2021},
-  url     = {https://arxiv.org/abs/2106.04624}
+@inproceedings{ecapa,
+  title={New Advances in Speaker Diarization.},
+  author={Aronowitz, Hagai and Zhu, Weizhong and Suzuki, Masayuki and Kurata, Gakuto and Hoory, Ron},
+  booktitle={Interspeech},
+  pages={279--283},
+  year={2020}
 }
 
-@misc{nemo2021,
-  title        = {NVIDIA NeMo Toolkit},
-  author       = {{NVIDIA}},
-  year         = {2021},
-  howpublished = {GitHub repository},
-  url          = {https://github.com/NVIDIA/NeMo},
-  note         = {Accessed: 2026-03-24}
+@article{comparison,
+  title   = {Benchmarking Diarization Models},
+  author  = {Lanzend{\"o}rfer, Luca A. and Gr{\"o}tschla, Florian and Blaser, Cesare and Wattenhofer, Roger},
+  journal = {arXiv preprint arXiv:2509.26177},
+  year    = {2025},
+  doi     = {10.48550/arXiv.2509.26177},
+  url     = {https://arxiv.org/abs/2509.26177}
 }
+
+@misc{simpleder,
+  title = {SimpleDER Python package},
+  url = {https://github.com/wq2012/SimpleDER},
+}
+
+
